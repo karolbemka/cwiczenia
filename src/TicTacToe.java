@@ -7,14 +7,12 @@ public class TicTacToe {
         boolean shouldContinue = true;
         boolean full = true;
 
-//        printBoard(emptyBoard()); nie potrzebne
         printBoard(emptyBoard());
 
         while (shouldContinue) {
             while (full) {
                 int i1 = readFromConsole("pierwszy");
                 int j1 = readFromConsole("pierwszy");
-//                char[][] newGameBoard = gameBoard; chyba nie potrzebne
                 if (gameBoard[i1][j1] != '?') {
                     System.out.println("To pole jest juz zajete, wybiez inne");
                     printBoard(gameBoard);
@@ -25,14 +23,7 @@ public class TicTacToe {
             }
             full = true;
             printBoard(gameBoard);
-            if ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'X' ||
-                (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'X' ||
-                (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
-                (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'X' ||
-                (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'X' ||
-                (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
-                (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
-                (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'X') {
+            if (xWon(gameBoard)) {
                 shouldContinue = false;
                 System.out.println("Wygral X");
             }
@@ -50,21 +41,33 @@ public class TicTacToe {
                 }
                 full = true;
                 printBoard(gameBoard);
-                if ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'O' ||
-                        (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'O' ||
-                        (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                        (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'O' ||
-                        (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'O' ||
-                        (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                        (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                        (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'O') {
+                if (oWon(gameBoard)){
                     shouldContinue = false;
                     System.out.println("Wygral O");
                 }
             }
-            }
         }
-
+    }
+    static boolean oWon (char[][] gameBoard) {
+            return ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'O' ||
+                    (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'O' ||
+                    (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                    (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'O' ||
+                    (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'O' ||
+                    (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                    (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                    (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'O');
+        }
+    static boolean xWon (char[][] gameBoard) {
+        return ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'X' ||
+                (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'X' ||
+                (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
+                (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'X' ||
+                (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'X' ||
+                (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
+                (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
+                (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'X');
+    }
 
     static void printBoard(char[][] gameBoard) {
         for (char[] x : gameBoard) {
