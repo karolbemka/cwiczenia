@@ -41,24 +41,26 @@ public class TicTacToe {
                 }
                 full = true;
                 printBoard(gameBoard);
-                if (oWon(gameBoard)){
+                if (oWon(gameBoard)) {
                     shouldContinue = false;
                     System.out.println("Wygral O");
                 }
             }
         }
     }
-    static boolean oWon (char[][] gameBoard) {
-            return ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'O' ||
-                    (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'O' ||
-                    (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                    (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'O' ||
-                    (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'O' ||
-                    (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                    (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
-                    (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'O');
-        }
-    static boolean xWon (char[][] gameBoard) {
+
+    static boolean oWon(char[][] gameBoard) {
+        return ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'O' ||
+                (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'O' ||
+                (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[2][0] == 'O' ||
+                (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[2][1] == 'O' ||
+                (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[2][2] == 'O' ||
+                (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) && gameBoard[2][0] == 'O');
+    }
+
+    static boolean xWon(char[][] gameBoard) {
         return ((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][2] == 'X' ||
                 (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][2] == 'X' ||
                 (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][2] == 'X' ||
@@ -89,10 +91,19 @@ public class TicTacToe {
     }
 
     static int readFromConsole(String gracz) {
+        boolean ask = true;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Gracz " + gracz + " wybiera pole");
-        return scanner.nextInt();
+        int a = -1;
+        while (ask) {
+            System.out.println("Gracz " + gracz + " wybiera pole");
+            a = scanner.nextInt();
+            if (a != 1 && a != 2 && a != 0) {
+                System.out.println("Podano zly znak");
+            } else {
+                ask = false;
+            }
+        }
+        return a;
     }
 }
-
 
