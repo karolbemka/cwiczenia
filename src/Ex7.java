@@ -4,22 +4,28 @@ public class Ex7 {
 
     public static void main(String[] args) {
 
-//        int tableSize = readFromConsole();
-//        int[] table = new int[tableSize];
-
-
-//        fillTable(table,tableSize);
-        // testy
-        int[] table = {5, 10, 10, 15};
-//        int t = t();
-        int t = 15;
-
-
+        int tableSize = readFromConsole();
+        int[] table = new int[tableSize];
         boolean continueCheck = true;
 
-        while (moreThanOne(table) && continueCheck) {
+        fillTable(table,tableSize);
+        int t = t();
+
+        // FOR TESTING
+//        int [] table = {1, 2, 3, 4, 5, 6};
+//        int t = 2;
+
+        while (moreThanOne(table) && continueCheck(table, continueCheck, t)) {
+            table = newTable(table, t);
+            printOutTable(table);
+            continueCheck(table,continueCheck, t);
+            }
+        System.out.println("Koncowa tabela to ");
+        printOutTable(table);
+        }
+    static int[] newTable(int[] table, int t) {
+
             for (int i = 0; i <= table.length - 2; i++) {
-                System.out.println("hi!");
                 for (int j = i + 1; j <= table.length - 1; j++) {
                     if (table[i] + table[j] == t) {
                         int[] newTable = new int[table.length - 1];
@@ -36,23 +42,29 @@ public class Ex7 {
                     }
                 }
             }
-            for (int i = 0; i < table.length; i++) {
-                System.out.print(table[i]);
-            }
-            System.out.print("\n");
+        return table;
+        }
+
+    static boolean continueCheck(int[] table, boolean continueCheck, int t){
+            int counter = 0;
             for (int i = 0; i <= table.length - 2; i++) {
-                int counter = 0;
                 for (int j = i + 1; j <= table.length - 1; j++) {
                     if (table[i] + table[j] == t) {
-                        counter ++;
+                        counter++;
                     }
                 }
-                if (counter = 0){
-
-                }
             }
+            if (counter > 0) {
+                continueCheck = true;
+            } else {
+                continueCheck = false;
+            }
+            return continueCheck;
+        }
 
-
+    static void printOutTable(int[] table) {
+        for (int i = 0; i < table.length; i++) {
+            System.out.println(table[i]);
         }
     }
 
@@ -82,5 +94,4 @@ public class Ex7 {
         System.out.println("Podaj wartosc dla t = ");
         return input.nextInt();
     }
-
 }

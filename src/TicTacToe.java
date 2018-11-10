@@ -5,48 +5,43 @@ public class TicTacToe {
 
         char[][] gameBoard = emptyBoard();
         boolean shouldContinue = true;
-        boolean full = true;
+        boolean empty = true;
 
         printBoard(emptyBoard());
 
         while (shouldContinue) {
-            while (full) {
-                int i1 = readFromConsole("pierwszy");
-                int j1 = readFromConsole("pierwszy");
-                if (gameBoard[i1][j1] != '?') {
-                    System.out.println("To pole jest juz zajete, wybiez inne");
-                    printBoard(gameBoard);
-                } else {
-                    gameBoard[i1][j1] = 'X';
-                    full = false;
-                }
-            }
-            full = true;
-            printBoard(gameBoard);
-            if (xWon(gameBoard)) {
-                shouldContinue = false;
-                System.out.println("Wygral X");
-            }
+            askForMove(gameBoard, empty, "pierwszy", 'X');
+            empty = true;
+            shouldContinue = isShouldContinue(gameBoard, shouldContinue, xWon(gameBoard), "Wygral X");
             if (shouldContinue) {
-                while (full) {
-                    int i2 = readFromConsole("drugi");
-                    int j2 = readFromConsole("drugi");
-                    if (gameBoard[i2][j2] != '?') {
-                        System.out.println("To pole jest juz zajete, wybiez inne");
-                        printBoard(gameBoard);
-                    } else {
-                        gameBoard[i2][j2] = 'O';
-                        full = false;
-                    }
-                }
-                full = true;
-                printBoard(gameBoard);
-                if (oWon(gameBoard)) {
-                    shouldContinue = false;
-                    System.out.println("Wygral O");
-                }
+                askForMove(gameBoard, empty, "drugi", 'O');
+                empty = true;
+                shouldContinue = isShouldContinue(gameBoard, shouldContinue, oWon(gameBoard), "Wygral O");
             }
         }
+    }
+
+    public static void askForMove(char[][] gameBoard, boolean empty, String gracz, char o) {
+        while (empty) {
+            int i2 = readFromConsole(gracz);
+            int j2 = readFromConsole(gracz);
+            if (gameBoard[i2][j2] != '?') {
+                System.out.println("To pole jest juz zajete, wybiez inne");
+                printBoard(gameBoard);
+            } else {
+                gameBoard[i2][j2] = o;
+                empty = false;
+            }
+        }
+    }
+
+    public static boolean isShouldContinue(char[][] gameBoard, boolean shouldContinue, boolean ifWon, String whoWon) {
+        printBoard(gameBoard);
+        if (ifWon) {
+            shouldContinue = false;
+            System.out.println(whoWon);
+        }
+        return shouldContinue;
     }
 
     static boolean oWon(char[][] gameBoard) {
@@ -106,4 +101,3 @@ public class TicTacToe {
         return a;
     }
 }
-
