@@ -1,4 +1,4 @@
-package oobExercies;
+package oopExercies;
 
 public class Rectangle extends Figure {
 
@@ -11,7 +11,7 @@ public class Rectangle extends Figure {
         this.b = b;
     }
 
-    double countArea(){
+    public double countArea(){
         return a * b;
     }
 

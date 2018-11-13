@@ -1,4 +1,4 @@
-package oobExercies;
+package oopExercies;
 
 public class oobExercies {
     public static void main(String[] args) {

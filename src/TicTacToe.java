@@ -23,13 +23,13 @@ public class TicTacToe {
 
     public static void askForMove(char[][] gameBoard, boolean empty, String gracz, char o) {
         while (empty) {
-            int i2 = readFromConsole(gracz);
-            int j2 = readFromConsole(gracz);
-            if (gameBoard[i2][j2] != '?') {
+            int i = readFromConsole(gracz);
+            int j = readFromConsole(gracz);
+            if (gameBoard[i][j] != '?') {
                 System.out.println("To pole jest juz zajete, wybiez inne");
                 printBoard(gameBoard);
             } else {
-                gameBoard[i2][j2] = o;
+                gameBoard[i][j] = o;
                 empty = false;
             }
         }

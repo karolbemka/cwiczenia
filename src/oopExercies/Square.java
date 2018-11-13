@@ -1,4 +1,4 @@
-package oobExercies;
+package oopExercies;
 
 public class Square extends Rectangle {
 
@@ -17,7 +17,25 @@ public class Square extends Rectangle {
         this.a = b;
         this.b = b;
     }
-//    public String getColor(){
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Square) {
+            Square squareToCompare = (Square) obj;
+            if (this.a == squareToCompare.a && this.b == squareToCompare.b){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //    public String getColor(){
 //        System.out.println("Kwadrat nie da ci odpowiedzi o swoim kolorze");
 //        return " ";
 //    }

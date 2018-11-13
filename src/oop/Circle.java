@@ -1,4 +1,4 @@
-package objectOrientedPrograming;
+package oop;
 
 public class Circle {
 }

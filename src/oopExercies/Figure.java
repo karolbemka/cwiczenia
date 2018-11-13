@@ -1,4 +1,4 @@
-package oobExercies;
+package oopExercies;
 
 public abstract class Figure {
     protected String color;
@@ -14,4 +14,6 @@ public abstract class Figure {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public abstract double countArea();
 }
